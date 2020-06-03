@@ -4,7 +4,7 @@ import { FontAwesome } from '@expo/vector-icons';
 
 const styles = StyleSheet.create({
   container: {
-    padding: 5,
+    padding: 8,
   },
 });
 
