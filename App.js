@@ -1,41 +1,12 @@
-import React, { useState, useEffect } from 'react';
-import { StyleSheet, SafeAreaView, FlatList } from 'react-native';
+import React from 'react';
+import AppNavigator from './src/navigation/AppNavigator';
+import { Provider } from 'react-redux';
+import store from './src/store';
 
-// json
-import dummyArticles from './dummies/articles';
-
-// components
-import ListItem from './src/components/ListItem';
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-  },
-});
-
-export default function App() {
-  const [articles, setArticles] = useState([]);
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setArticles(dummyArticles);
-    }, 2000);
-    return () => clearTimeout(timer);
-  }, []);
-
+export default App = () => {
   return (
-    <SafeAreaView style={styles.container}>
-      <FlatList
-        data={articles}
-        renderItem={({ item }) => (
-          <ListItem
-            imageUrl={item.urlToImage}
-            title={item.title}
-            author={item.author}
-          />
-        )}
-        keyExtractor={(item, index) => index.toString()}
-      />
-    </SafeAreaView>
+    <Provider store={store}>
+      <AppNavigator />
+    </Provider>
   );
-}
+};
